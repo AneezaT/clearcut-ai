@@ -5,7 +5,17 @@
     "nixpacksPlan": {
       "phases": {
         "setup": {
-          "nixPkgs": ["php84", "php84Packages.composer"]
+          "nixPkgs": [
+            "php84",
+            "php84Packages.composer"
+          ]
+        },
+        "build": {
+          "cmds": [
+            "composer install --no-dev --optimize-autoloader",
+            "php artisan config:cache",
+            "php artisan route:cache"
+          ]
         }
       }
     }
